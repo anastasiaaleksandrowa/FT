@@ -50,32 +50,3 @@ class FamilyTree {
     }
 }
 
-public class Main {
-    public static void main(String[] args) {
-        // Создаем людей
-        Person alice = new Person("Alice");
-        Person bob = new Person("Bob");
-        Person charlie = new Person("Charlie");
-
-        // Структура семьи
-        alice.addChild(bob);
-        alice.addChild(charlie);
-
-        // Создаем генеалогическое древо
-        FamilyTree familyTree = new FamilyTree();
-        familyTree.addPerson(alice);
-        familyTree.addPerson(bob);
-        familyTree.addPerson(charlie);
-
-        // Получаем детей Альисы
-        List<Person> childrenOfAlice = familyTree.getChildrenOf("Alice");
-
-        // Выводим детей Альисы
-        if (childrenOfAlice != null) {
-            System.out.println("Дети " + alice.getName() + ": " + 
-                childrenOfAlice.stream().map(Person::getName).reduce((a, b) -> a + ", " + b).orElse("нет детей"));
-        } else {
-            System.out.println("Человек не найден.");
-        }
-    }
-}
