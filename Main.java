@@ -21,15 +21,18 @@ public class Main {
         familyTree.addPerson(bob);
         familyTree.addPerson(charlie);
 
-        // Получаем детей Алисы
-        List<Person> childrenOfAlice = familyTree.getChildrenOf("Alice");
+        // Запись в файл
+        FileHandler fileHandler = new FileHandlerImpl();
+        fileHandler.writeToFile(familyTree, "family_tree.dat");
 
-        // Выводим детей Алисы
+        // Чтение из файла
+        FamilyTree loadedFamilyTree = fileHandler.readFromFile("family_tree.dat");
+        List<Person> childrenOfAlice = loadedFamilyTree.getChildrenOf("Alice");
+
+        // Выводим детей Альисы
         if (childrenOfAlice != null) {
             System.out.println("Дети " + alice.getName() + ": " + 
                 childrenOfAlice.stream().map(Person::getName).reduce((a, b) -> a + ", " + b).orElse("нет детей"));
-        } else {
-            System.out.println("Человек не найден.");
         }
     }
 
