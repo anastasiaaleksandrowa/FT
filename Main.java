@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +61,8 @@ class Person {
     }
 }
 
-class FamilyTree {
+class FamilyTree implements Serializable {
+    private static final long serialVersionUID = 1L; // Для сериализации
     private Map<String, Person> people;
 
     public FamilyTree() {
@@ -82,6 +84,10 @@ class FamilyTree {
         } else {
             return null;
         }
+    }
+
+    public Map<String, Person> getPeople() {
+        return people; // Добавлено для поддержки сериализации
     }
 }
 
